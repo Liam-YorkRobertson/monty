@@ -3,18 +3,18 @@
 /**
  *p_push - adds a node to the top of the stack (push opcode)
  *@head: double pointer to head of stack
- *@counter: the line number
+ *@line_count: the line number
  *Return: none (void)
  */
 
-void p_push(stack_t **head, unsigned int counter)
+void p_push(stack_t **head, unsigned int line_count)
 {
 	int a, b = 0;
 	bool is_neg = false;
 
 	if (!trans.argu)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", counter);
+		fprintf(stderr, "L%d: usage: push integer\n", line_count);
 		fclose(trans.monty_file);
 		free(trans.line_content);
 		free_stack(*head);
@@ -30,7 +30,7 @@ void p_push(stack_t **head, unsigned int counter)
 		if (trans.argu[b] < '0' || trans.argu[b] > '9')
 		{
 
-			fprintf(stderr, "L%d: usage:push integer\n", counter);
+			fprintf(stderr, "L%d: usage:push integer\n", line_count);
 			fclose(trans.monty_file);
 			free(trans.line_content);
 			free_stack(*head);
