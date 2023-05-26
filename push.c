@@ -10,7 +10,7 @@
 
 void p_push(stack_t **head, unsigned int line_count)
 {
-	int a, b = 0;
+	int a, b, flag;
 
 	if (!trans.argu)
 	{
@@ -20,20 +20,27 @@ void p_push(stack_t **head, unsigned int line_count)
 		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
+
+	b = 0;
 	if (trans.argu[0] == '-')
 	{
 		b++;
 	}
+
+	flag = 0;
 	for (; trans.argu[b] != '\0'; b++)
 	{
-		if (trans.argu[b] < '0' || trans.argu[b] > '9')
+		if (flag)
 		{
-
-			fprintf(stderr, "L%d: usage:push integer\n", line_count);
-			fclose(trans.monty_file);
-			free(trans.line_content);
-			p_free_stack(*head);
-			exit(EXIT_FAILURE);
+			if (trans.argu[b] < '0' || trans.argu[b] > '9')
+			{
+				flag = 1;
+				fprintf(stderr, "L%d: usage:push integer\n", line_count);
+				fclose(trans.monty_file);
+				free(trans.line_content);
+				p_free_stack(*head);
+				exit(EXIT_FAILURE);
+			}
 		}
 	}
 	a = atoi(trans.argu);
