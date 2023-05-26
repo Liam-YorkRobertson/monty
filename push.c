@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include "monty.h"
 
 /**
@@ -10,7 +11,6 @@
 void p_push(stack_t **head, unsigned int line_count)
 {
 	int a, b = 0;
-	bool is_neg = false;
 
 	if (!trans.argu)
 	{
@@ -20,9 +20,8 @@ void p_push(stack_t **head, unsigned int line_count)
 		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-	if (trans.argu[0] == "-")
+	if (trans.argu[0] == '-')
 	{
-		is_neg = true;
 		b++;
 	}
 	for (; trans.argu[b] != '\0'; b++)
@@ -40,10 +39,10 @@ void p_push(stack_t **head, unsigned int line_count)
 	a = atoi(trans.argu);
 	if (trans.flag_change == 0)
 	{
-		add_node_to_stack(head, n);
+		add_node_to_stack(head, a);
 	}
 	else
 	{
-		add_node_to_queue(head, n);
+		add_node_to_queue(head, a);
 	}
 }

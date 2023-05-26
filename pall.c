@@ -9,7 +9,10 @@
 
 void p_pall(stack_t **head, unsigned int line_count)
 {
-	stack_t *current = *head;
+	stack_t *current;
+	(void) line_count;
+
+	current = *head;
 
 	while (current != NULL)
 	{

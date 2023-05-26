@@ -9,5 +9,6 @@
 
 void p_nop(stack_t **head, unsigned int line_counter)
 {
-	return
+	(void) head;
+	(void) line_counter;
 }

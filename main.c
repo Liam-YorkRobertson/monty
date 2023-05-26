@@ -1,3 +1,5 @@
+#define  _GNU_SOURCE
+#include <stdio.h>
 #include "monty.h"
 
 /**
@@ -11,42 +13,40 @@ trans_t trans = {NULL, NULL, NULL, 0};
 
 int main(int argc, char *argv[])
 {
-	FILE *file;
-	char *line;
-	size_t len;
+	FILE *m_file;
+	char *line = NULL;
+	size_t characters, len = 0;
 	ssize_t read;
-	stack_t *stack;
-	unsigned int line_number;
-
+	stack_t *stack = NULL;
+	unsigned int line_number = 0;
+	char *line_content;
+	
 	if (argc != 2)
 	{
-		fprintf(stderr, "USAGE monty file\n");
-		exit(EXIT_FAILURE);
+		fprintf(stderr, "USAGE: monty file\n");
+		return (EXIT_FAILURE);
 	}
-       
-	file = fopen(argv[1], "r");
-	trans.monty_file = file;
 
-	if (!file)
+	m_file = fopen(argv[1], "r");
+	trans.monty_file = m_file;
+
+	if (!m_file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
+		return (EXIT_FAILURE);
 	}
 
-	line = NULL;
-	len = 0;
-	stack = NULL;
-	line_number = 0;
-
-	while ((read = getline(&line, &len, file)) != -1)
+	characters = getline (&line, &len, m_file);
+	while ((read = characters) != -1)
 	{
-		trans.line_content = line;
+		line_content = NULL;
+		trans.line_content = line_content;
 		line_number++;
-		instructions(line_content, &stack, line_counter, monty_file);
+		instruction(line_content, &stack, line_number, m_file);
 	}
 
 	free(line);
-	fclose(file);
+	fclose(m_file);
 	p_free_stack(stack);
-	return (0);
+	return (EXIT_SUCCESS);
 }

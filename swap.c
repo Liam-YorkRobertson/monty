@@ -9,6 +9,8 @@
 
 void p_swap(stack_t **head, unsigned int line_counter)
 {
+	int temp;
+
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't swap, stack too short\n", line_counter);
@@ -18,7 +20,7 @@ void p_swap(stack_t **head, unsigned int line_counter)
 		exit(EXIT_FAILURE);
 	}
 
-	int temp = (*head)->n;
+	temp = (*head)->n;
 	(*head)->n = (*head)->next->n;
 	(*head)->next->n = temp;
 }

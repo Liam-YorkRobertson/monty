@@ -9,6 +9,9 @@
 
 void p_sub(stack_t **head, unsigned int line_counter)
 {
+	int diff;
+	stack_t *temp;
+
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_counter);
@@ -18,9 +21,9 @@ void p_sub(stack_t **head, unsigned int line_counter)
 		exit(EXIT_FAILURE);
 	}
 
-	int diff = (*head)->next->n - (*head)->n;
+	diff = (*head)->next->n - (*head)->n;
 	(*head)->next->n = diff;
-	stack_t *temp = *head;
+	temp = *head;
 	*head = (*head)->next;
 	(*head)->prev = NULL;
 	free(temp);

@@ -9,6 +9,9 @@
 
 void p_mul(stack_t **head, unsigned int line_counter)
 {
+	int result;
+	stack_t *temp;
+
 	if (*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_counter);
@@ -18,8 +21,8 @@ void p_mul(stack_t **head, unsigned int line_counter)
 		exit(EXIT_FAILURE);
 	}
 
-	int result = (*head)->n * (*head)->next->n;
-	stack_t *temp = *head;
+	result = (*head)->n * (*head)->next->n;
+	temp = *head;
 	(*head)->next->n = result;
 	*head = (*head)->next;
 	free(temp);

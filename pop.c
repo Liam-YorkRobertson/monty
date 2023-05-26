@@ -9,6 +9,8 @@
 
 void p_pop(stack_t **head, unsigned int line_counter)
 {
+	stack_t *temp;
+
 	if (*head == NULL)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", line_counter);
@@ -18,7 +20,7 @@ void p_pop(stack_t **head, unsigned int line_counter)
 		exit(EXIT_FAILURE);
 	}
 
-	stack_t *temp = *head;
+	temp = *head;
 	*head = (*head)->next;
 
 	if (*head != NULL)
