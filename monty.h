@@ -77,5 +77,6 @@ void p_stack(stack_t __attribute__((unused)) **head,
 unsigned int __attribute__((unused)) line_count);
 void p_sub(stack_t **head, unsigned int line_counter);
 void p_swap(stack_t **head, unsigned int line_counter);
+int instruction(char *line_content, stack_t **stack, unsigned int line_counter, FILE *monty_file);
 
 #endif /*lists.h*/

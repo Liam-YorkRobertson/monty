@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- *instructions - runs the opcode
+ *instruction - runs the opcode
  *@line_content: line content
  *@stack: double pointer to head of stack
  *@line_counter: line counter
@@ -9,7 +9,7 @@
  *Return: none (void)
  */
 
-int instructions(char *line_content, stack_t **stack, unsigned int line_counter, FILE *monty_file)
+int instruction(char *line_content, stack_t **stack, unsigned int line_counter, FILE *monty_file)
 {
 	instruction_t op_command[] = {
 		{"push", p_push},
@@ -41,9 +41,9 @@ int instructions(char *line_content, stack_t **stack, unsigned int line_counter,
 
 	for (i = 0; op_command[i].opcode; i++)
 	{
-		if (strcmp(op, op[i].opcode) == 0)
+		if (strcmp(op, op_command[i].opcode) == 0)
 		{
-			op_command[i].f(stack, counter);
+			op_command[i].f(stack, line_counter);
 			return (0);
 		}
 	}

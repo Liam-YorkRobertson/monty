@@ -7,36 +7,42 @@
  *Return: 0 (success)
  */
 
+trans_t trans = {NULL, NULL, NULL, 0};
+
 int main(int argc, char *argv[])
 {
-	trans_t trans = {NULL, NULL, NULL, 0};
+	FILE *file;
+	char *line;
+	size_t len;
+	ssize_t read;
+	stack_t *stack;
+	unsigned int line_number;
 
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
-	FILE *file = fopen(argv[1], "r");
-
+       
+	file = fopen(argv[1], "r");
 	trans.monty_file = file;
+
 	if (!file)
 	{
 		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
-	char *line = NULL;
-	size_t len = 0;
-	ssize_t read;
-	stack_t *stack = NULL;
-	unsigned int line_number = 0;
+	line = NULL;
+	len = 0;
+	stack = NULL;
+	line_number = 0;
 
 	while ((read = getline(&line, &len, file)) != -1)
 	{
 		trans.line_content = line;
 		line_number++;
-		execute(line, &stack, line_number, file);
+		instructions(line_content, &stack, line_counter, monty_file);
 	}
 
 	free(line);
