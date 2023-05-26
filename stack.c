@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *p_stack - sets trans.flag_change to 0 (stack)

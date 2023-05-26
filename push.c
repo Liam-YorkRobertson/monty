@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *p_push - adds a node to the top of the stack (push opcode)

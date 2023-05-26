@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *p_pop - removes the top element of the stack

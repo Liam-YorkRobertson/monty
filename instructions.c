@@ -28,6 +28,7 @@ int instructions(char *line_content, stack_t **stack, unsigned int line_counter,
 	};
 
 	char *op, *argu;
+	int i;
 
 	op = strtok(line_content, " \n\t");
 	if (op && op[0] == '#')
@@ -38,7 +39,7 @@ int instructions(char *line_content, stack_t **stack, unsigned int line_counter,
 	argu = strtok(NULL, " \n\t");
 	trans.argu = argu;
 
-	for (int i = 0; op_command[i].opcode; i++)
+	for (i = 0; op_command[i].opcode; i++)
 	{
 		if (strcmp(op, op[i].opcode) == 0)
 		{

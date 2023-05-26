@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *add_node_to_stack - adds node to the stack

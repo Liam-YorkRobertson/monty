@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *p_pall - prints all items in stack

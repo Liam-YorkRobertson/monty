@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *p_free_stack - frees a doubly linked list
@@ -14,6 +14,6 @@ void p_free_stack(stack_t *head)
 	{
 		temp = head;
 		head = head->next;
-		free temp;
+		free(temp);
 	}
 }

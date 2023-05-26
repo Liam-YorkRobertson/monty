@@ -1,4 +1,4 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
  *p_div - divides the top two elements of the stack
@@ -9,6 +9,8 @@
 
 void p_div(stack_t **head, unsigned int line_counter)
 {
+	stack_t *temp;
+
 	if (!*head || !(*head)->next)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_counter);
@@ -28,7 +30,7 @@ void p_div(stack_t **head, unsigned int line_counter)
 	}
 
 	(*head)->next->n /= (*head)->n;
-	stack_t *temp = *head;
+	temp = *head;
 	*head = (*head)->next;
 	free(temp);
 }

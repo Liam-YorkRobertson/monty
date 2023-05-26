@@ -1,7 +1,7 @@
-#include "lists.h"
+#include "monty.h"
 
 /**
- *p_mul - multiplie the top two elements of the stack
+ *p_mul - multiply the top two elements of the stack
  *@head: double pointer to stack head
  *@line_counter: line number
  *Return: none (void)
