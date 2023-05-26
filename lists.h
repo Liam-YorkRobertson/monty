@@ -56,4 +56,22 @@ typedef struct trans_s
 
 extern trans_t trans;
 
+void p_add(stack_t **head, unsigned int line_counter);
+void add_node_to_queue(stack_t **head, int n);
+void add_node_to_stack(stack_t **head, int n);
+void p_div(stack_t **head, unsigned int line_counter);
+void p_free_stack(stack_t *head);
+void p_mul(stack_t **head, unsigned int line_counter);
+void p_nop(stack_t **head, unsigned int line_counter);
+void p_pall(stack_t **head, unsigned int line_count);
+void p_pint(stack_t **head, unsigned int line_counter);
+void p_pop(stack_t **head, unsigned int line_counter);
+void p_push(stack_t **head, unsigned int line_count);
+void p_queue(stack_t __attribute__((unused)) **head,
+unsigned int __attribute__((unused)) line_count);
+void p_stack(stack_t __attribute__((unused)) **head,
+unsigned int __attribute__((unused)) line_count);
+void p_sub(stack_t **head, unsigned int line_counter);
+void p_swap(stack_t **head, unsigned int line_counter);
+
 #endif /*lists.h*/
