@@ -1,6 +1,64 @@
 #define  _GNU_SOURCE
-#include <stdio.h>
 #include "monty.h"
+
+/**
+ *check_arg_count - checks the number of passed to the program
+ *@argc: argument count
+ *Return: none (void)
+ */
+
+trans_t trans = {NULL, NULL, NULL, 0};
+
+void check_arg_count(int argc)
+{
+	if (argc != 2)
+	{
+		fprintf(stderr, "USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
+}
+
+/**
+ *init_monty_file - initializes a Monty file by opening it
+ *@file_path: path to the monty file
+ *Return: pointer to monty_file
+ */
+
+FILE *init_monty_file(char *file_path)
+{
+	FILE *monty_file = fopen(file_path, "r");
+
+	if (!monty_file)
+	{
+		fprintf(stderr, "Error: Can't open file %s\n", file_path);
+		exit(EXIT_FAILURE);
+	}
+	return (monty_file);
+}
+
+/**
+ *process_monty_file - reads each line of file, processes the line content
+ *@monty_file: pointer to monty_file
+ *@stack: pointer to stack
+ *Return: none (void)
+ */
+
+void process_monty_file(FILE *monty_file, stack_t **stack)
+{
+	char *line_content = NULL;
+	size_t buffer_size = 0;
+	ssize_t line_read;
+	unsigned int line_counter = 0;
+
+	while ((line_read = getline(&line_content, &buffer_size, monty_file)) > 0)
+	{
+		trans.line_content = line_content;
+		line_counter++;
+		instruction(line_content, stack, line_counter, monty_file);
+		free(line_content);
+		line_content = NULL;
+	}
+}
 
 /**
  *main - interprets monty code
@@ -9,44 +67,20 @@
  *Return: 0 (success)
  */
 
-trans_t trans = {NULL, NULL, NULL, 0};
-
 int main(int argc, char *argv[])
 {
-	FILE *m_file;
-	char *line = NULL;
-	size_t characters, len = 0;
-	ssize_t read;
 	stack_t *stack = NULL;
-	unsigned int line_number = 0;
-	char *line_content;
-	
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		return (EXIT_FAILURE);
-	}
+	FILE *monty_file;
 
-	m_file = fopen(argv[1], "r");
-	trans.monty_file = m_file;
+	check_arg_count(argc);
+	monty_file = init_monty_file(argv[1]);
 
-	if (!m_file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		return (EXIT_FAILURE);
-	}
+	trans.monty_file = monty_file;
 
-	characters = getline (&line, &len, m_file);
-	while ((read = characters) != -1)
-	{
-		line_content = NULL;
-		trans.line_content = line_content;
-		line_number++;
-		instruction(line_content, &stack, line_number, m_file);
-	}
+	process_monty_file(monty_file, &stack);
 
-	free(line);
-	fclose(m_file);
 	p_free_stack(stack);
-	return (EXIT_SUCCESS);
+	fclose(monty_file);
+
+	return (0);
 }

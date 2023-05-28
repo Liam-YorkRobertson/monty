@@ -20,13 +20,11 @@ void p_push(stack_t **head, unsigned int line_count)
 		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
-
 	b = 0;
 	if (trans.argu[0] == '-')
 	{
 		b++;
 	}
-
 	flag = 0;
 	for (; trans.argu[b] != '\0'; b++)
 	{

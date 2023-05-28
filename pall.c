@@ -3,7 +3,7 @@
 /**
  *p_pall - prints all items in stack
  *@head: double pointer to head of stack
- *@counter: not used
+ *@line_count: not used
  *Return: none (void)
  */
 
