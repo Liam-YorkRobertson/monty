@@ -9,7 +9,8 @@
  *Return: none (void)
  */
 
-int instruction(char *line_content, stack_t **stack, unsigned int line_counter, FILE *monty_file)
+int instruction(char *line_content, stack_t **stack,
+unsigned int line_counter, FILE *monty_file)
 {
 	instruction_t op_command[] = {
 		{"push", p_push},
@@ -26,7 +27,6 @@ int instruction(char *line_content, stack_t **stack, unsigned int line_counter, 
 		{"stack", p_stack},
 		{NULL, NULL}
 	};
-
 	char *op, *argu;
 	int i;
 
@@ -35,10 +35,8 @@ int instruction(char *line_content, stack_t **stack, unsigned int line_counter, 
 	{
 		return (0);
 	}
-
 	argu = strtok(NULL, " \n\t");
 	trans.argu = argu;
-
 	for (i = 0; op_command[i].opcode; i++)
 	{
 		if (strcmp(op, op_command[i].opcode) == 0)
@@ -47,13 +45,11 @@ int instruction(char *line_content, stack_t **stack, unsigned int line_counter, 
 			return (0);
 		}
 	}
-
 	if (op)
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_counter, op);
 		fclose(monty_file);
 		exit(EXIT_FAILURE);
 	}
-
 	return (1);
 }

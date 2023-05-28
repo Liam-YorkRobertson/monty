@@ -1,13 +1,13 @@
 #define  _GNU_SOURCE
 #include "monty.h"
 
+trans_t trans = {NULL, NULL, NULL, 0};
+
 /**
  *check_arg_count - checks the number of passed to the program
  *@argc: argument count
  *Return: none (void)
  */
-
-trans_t trans = {NULL, NULL, NULL, 0};
 
 void check_arg_count(int argc)
 {
