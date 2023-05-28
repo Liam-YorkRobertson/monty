@@ -9,8 +9,6 @@
 
 void p_div(stack_t **head, unsigned int line_counter)
 {
-	stack_t *temp;
-
 	if (!*head || !(*head)->next)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_counter);
@@ -26,7 +24,7 @@ void p_div(stack_t **head, unsigned int line_counter)
 	}
 
 	(*head)->next->n /= (*head)->n;
-	temp = *head;
 	*head = (*head)->next;
-	free(temp);
+	free((*head)->prev);
+	(*head)->prev = NULL;
 }
