@@ -17,6 +17,8 @@ void p_pint(stack_t **head, unsigned int line_counter)
 	{
 		fprintf(stderr, "L%u: can't pint, stack empty\n", line_counter);
 		fclose(trans.monty_file);
+		free(trans.line_content);
+		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 }
