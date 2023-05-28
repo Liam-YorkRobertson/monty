@@ -9,7 +9,6 @@
 
 void p_add(stack_t **head, unsigned int line_counter)
 {
-	stack_t *temp = *head;
 	int sum;
 
 	if (*head == NULL || (*head)->next == NULL)
@@ -19,9 +18,7 @@ void p_add(stack_t **head, unsigned int line_counter)
 		exit(EXIT_FAILURE);
 	}
 
-	temp = *head;
-	sum = temp->n + temp->next->n;
-	temp->next->n = sum;
-	*head = temp->next;
-	free(temp);
+	sum = (*head)->n + (*head)->next->n;
+	(*head)->next->n = sum;
+	*head = (*head)->next;
 }
