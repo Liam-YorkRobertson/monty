@@ -10,7 +10,6 @@
 void p_mul(stack_t **head, unsigned int line_counter)
 {
 	int result;
-	stack_t *temp;
 
 	if (*head == NULL || (*head)->next == NULL)
 	{
@@ -20,8 +19,8 @@ void p_mul(stack_t **head, unsigned int line_counter)
 	}
 
 	result = (*head)->n * (*head)->next->n;
-	temp = *head;
 	(*head)->next->n = result;
 	*head = (*head)->next;
-	free(temp);
+	free((*head)->prev);
+	(*head)->prev = NULL;
 }
