@@ -55,7 +55,6 @@ void process_monty_file(FILE *monty_file, stack_t **stack)
 		trans.line_content = line_content;
 		line_counter++;
 		instruction(line_content, stack, line_counter, monty_file);
-		free(line_content);
 		line_content = NULL;
 	}
 }
@@ -79,7 +78,6 @@ int main(int argc, char *argv[])
 
 	process_monty_file(monty_file, &stack);
 
-	p_free_stack(stack);
 	fclose(monty_file);
 
 	return (0);

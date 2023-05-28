@@ -52,8 +52,6 @@ int instruction(char *line_content, stack_t **stack, unsigned int line_counter, 
 	{
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_counter, op);
 		fclose(monty_file);
-		free(line_content);
-		p_free_stack(*stack);
 		exit(EXIT_FAILURE);
 	}
 

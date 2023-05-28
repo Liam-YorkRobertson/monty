@@ -16,8 +16,6 @@ void p_mul(stack_t **head, unsigned int line_counter)
 	{
 		fprintf(stderr, "L%d: can't mul, stack too short\n", line_counter);
 		fclose(trans.monty_file);
-		free(trans.line_content);
-		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 

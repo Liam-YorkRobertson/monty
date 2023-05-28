@@ -16,8 +16,6 @@ void p_push(stack_t **head, unsigned int line_count)
 	{
 		fprintf(stderr, "L%d: usage: push integer\n", line_count);
 		fclose(trans.monty_file);
-		free(trans.line_content);
-		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 	b = 0;
@@ -35,8 +33,6 @@ void p_push(stack_t **head, unsigned int line_count)
 				flag = 1;
 				fprintf(stderr, "L%d: usage:push integer\n", line_count);
 				fclose(trans.monty_file);
-				free(trans.line_content);
-				p_free_stack(*head);
 				exit(EXIT_FAILURE);
 			}
 		}

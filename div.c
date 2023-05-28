@@ -15,8 +15,6 @@ void p_div(stack_t **head, unsigned int line_counter)
 	{
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_counter);
 		fclose(trans.monty_file);
-		free(trans.line_content);
-		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 
@@ -24,8 +22,6 @@ void p_div(stack_t **head, unsigned int line_counter)
 	{
 		fprintf(stderr, "L%d: division by zero\n", line_counter);
 		fclose(trans.monty_file);
-		free(trans.line_content);
-		p_free_stack(*head);
 		exit(EXIT_FAILURE);
 	}
 
