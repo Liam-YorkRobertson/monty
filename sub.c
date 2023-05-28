@@ -10,7 +10,6 @@
 void p_sub(stack_t **head, unsigned int line_counter)
 {
 	int diff;
-	stack_t *temp;
 
 	if (*head == NULL || (*head)->next == NULL)
 	{
@@ -21,8 +20,6 @@ void p_sub(stack_t **head, unsigned int line_counter)
 
 	diff = (*head)->next->n - (*head)->n;
 	(*head)->next->n = diff;
-	temp = *head;
 	*head = (*head)->next;
 	(*head)->prev = NULL;
-	free(temp);
 }
